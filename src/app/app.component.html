@@ -1,4 +1,8 @@
 <h1>FireBase</h1>
+
+<h3>Add An New Course</h3>
+<input type="text" #course (keyup.enter)="addCourse(course)">
+
 <h3>list of object</h3>
 <ul>
   <li *ngFor="let course of courses$ | async">{{course.name }} -<b>{{course.price}}</b></li>

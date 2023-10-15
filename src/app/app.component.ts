@@ -16,4 +16,11 @@ export class AppComponent {
       .object<fireBaseDataType>('/courses/1')
       .valueChanges();
   }
+
+  addCourse(course: HTMLInputElement) {
+    this.db
+      .list<fireBaseDataType>('/courses')
+      .push({ name: course.value, price: 1000 });
+    course.value = '';
+  }
 }
