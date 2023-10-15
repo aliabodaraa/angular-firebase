@@ -7,7 +7,7 @@ type dataType = { name: string; price: number }[];
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
 })
-export class AppComponent {
+export class AppComponent implements OnDestroy {
   courses: dataType = [];
   subscribtion: Subscription;
   constructor(private db: AngularFireDatabase) {
@@ -20,6 +20,9 @@ export class AppComponent {
           console.log(this.courses);
         },
       });
+  }
+  ngOnDestroy(): void {
+    this.subscribtion.unsubscribe();
   }
 
   title = 'firebase-with-angular';
