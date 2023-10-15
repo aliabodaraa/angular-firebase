@@ -1,5 +1,9 @@
 <h1>FireBase</h1>
-<button type="button" class="btn btn-primary" (click)="ngOnDestroy()">Go Offline</button>
 <ul>
-  <li *ngFor="let course of courses">{{course.name}} -<b>{{course.price}}</b></li>
+<!-- And instead of iterating over courses, we're going to iterate over courses$, which is an observable.
+And here we apply the async pipe that is going to unwrap this observable and get the latest values.
+And then when the component is going to be destroyed, it's going to automatically unsubscribe from
+the subscription.
+And this means we can simplify the code in our component to a great extent. -->
+  <li *ngFor="let course of courses$ | async">{{course.name }} -<b>{{course.price}}</b></li>
 </ul>
