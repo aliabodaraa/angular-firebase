@@ -1,9 +1,12 @@
 <h1>FireBase</h1>
+<h3>list of object</h3>
 <ul>
-<!-- And instead of iterating over courses, we're going to iterate over courses$, which is an observable.
-And here we apply the async pipe that is going to unwrap this observable and get the latest values.
-And then when the component is going to be destroyed, it's going to automatically unsubscribe from
-the subscription.
-And this means we can simplify the code in our component to a great extent. -->
   <li *ngFor="let course of courses$ | async">{{course.name }} -<b>{{course.price}}</b></li>
 </ul>
+<h3>single object</h3>
+<p>{{course$ | async | json}}</p>
+<p>{{(course$ | async)?.name}}</p>
+
+<div *ngIf="course$ | async as aliasNameWithAs">
+  {{aliasNameWithAs.name}}
+</div>

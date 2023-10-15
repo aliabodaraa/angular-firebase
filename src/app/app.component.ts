@@ -9,7 +9,11 @@ type fireBaseDataType = { name: string; price: number };
 })
 export class AppComponent {
   courses$: Observable<fireBaseDataType[]>;
+  course$: Observable<fireBaseDataType | null>;
   constructor(private db: AngularFireDatabase) {
     this.courses$ = this.db.list<fireBaseDataType>('/courses').valueChanges();
+    this.course$ = this.db
+      .object<fireBaseDataType>('/courses/1')
+      .valueChanges();
   }
 }
