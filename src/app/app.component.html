@@ -8,6 +8,8 @@
   <li *ngFor="let course of courses$ | async let index=index">{{course.name }} {{ index }}  - <b>{{course.price}}</b>
     <input type="text" #course1 (keyup.enter)="editCourse(course1,index)"/>
     <input type="number" #course2 (keyup.enter)="editCourse(course2,index)"/>
+    <button type="number"  (click)="deleteCourse(index)">Delete</button>
+
   </li>
 </ul>
 <h3>single object</h3>
