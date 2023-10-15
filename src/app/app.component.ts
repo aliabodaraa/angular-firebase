@@ -23,4 +23,15 @@ export class AppComponent {
       .push({ name: course.value, price: 1000 });
     course.value = '';
   }
+  editCourse(
+    edited_input: HTMLInputElement,
+    previous_course: fireBaseDataType,
+    index: number
+  ) {
+    let named_property = edited_input.type == 'text' ? 'name' : 'price';
+    this.db
+      .object<fireBaseDataType>('/courses/' + index)
+      .set({ ...previous_course, [named_property]: edited_input.value });
+    edited_input.value = '';
+  }
 }
