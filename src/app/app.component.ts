@@ -23,15 +23,11 @@ export class AppComponent {
       .push({ name: course.value, price: 1000 });
     course.value = '';
   }
-  editCourse(
-    edited_input: HTMLInputElement,
-    previous_course: fireBaseDataType,
-    index: number
-  ) {
+  editCourse(edited_input: HTMLInputElement, index: number) {
     let named_property = edited_input.type == 'text' ? 'name' : 'price';
     this.db
       .object<fireBaseDataType>('/courses/' + index)
-      .set({ ...previous_course, [named_property]: edited_input.value });
+      .update({ [named_property]: edited_input.value }); //update only the wanted property the property not mentioned here will not affected
     edited_input.value = '';
   }
 }
